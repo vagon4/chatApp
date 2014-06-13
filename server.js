@@ -38,3 +38,19 @@ function serverStatic(res, cache, absPath){
 		});
 	}
 }
+
+var server = http.createServer(function(req, res){
+	var fPath = false;
+	
+	if(req.url == '/'){
+		fPath = 'public/index.html';
+	} else {
+		fPath = 'public' + request.url;
+	}
+	var absPath = './' + fPath;
+	serveStatic(res, cache, absPath);
+});
+
+server.listen(3000, function(){
+	console.log("Server listening on port 3000.");
+});
