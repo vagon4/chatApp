@@ -17,3 +17,24 @@ function sendFile(res, fPath, fContents){
 	);
 	res.end(fContents);
 }
+
+function serverStatic(res, cache, absPath){
+	if (cache[absPath]){
+		sendFile(res, absPath, cache[absPath]);
+	} else {
+		fs.exists(absPath, function(exists){
+			if(exists){
+				fs.readFile(absPath, function(err, data){
+					if(err){
+						send404(res);
+					} else {
+						cache[absPath] = data;
+						sendFile(res, absPath, data);
+					}
+				});
+			} else {
+				send404(res);
+			}
+		});
+	}
+}
