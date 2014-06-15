@@ -1,4 +1,4 @@
 chatApp
 =======
 
-IM app from Node.js in action
+IM app from the book "Node.js in Action"
