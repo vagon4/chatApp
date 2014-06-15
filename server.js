@@ -45,10 +45,10 @@ var server = http.createServer(function(req, res){
 	if(req.url == '/'){
 		fPath = 'public/index.html';
 	} else {
-		fPath = 'public' + request.url;
+		fPath = 'public' + req.url;
 	}
 	var absPath = './' + fPath;
-	serveStatic(res, cache, absPath);
+	serverStatic(res, cache, absPath);
 });
 
 server.listen(3000, function(){
